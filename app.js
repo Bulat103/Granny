@@ -1,23 +1,32 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
 const app = express();
 const PORT = 3000;
 
 
 app.set('view engine', 'hbs');
-// app.set('views', path.join(__dirname, 'views'));
-// app.use(logger('dev'));
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(cookiePars());
+app.use(cookieParser());
 
+app.use(session({
+  store: new FileStore(),
+  secret: 'rtyujn',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false },
+  name: 'authorisation',
+}));
 
-app.get('/', (req, res) => {
-   res.render('layout');
- });
+app.use((req, res, next) => {
+  res.locals.username = req.session?.user; // optional chaining operator
+  next();
+});
 
-
- app.listen(PORT, () => {
-   console.log('started on port:', PORT);
- });
- 
+app.listen(PORT, () => {
+  console.log('Hello');
+});
