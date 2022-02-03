@@ -1,3 +1,13 @@
-.signContainer{
-  width: 30vw;
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+}
+
+
+.container{
+   background-color: salmon;
+   /* border-radius: 10%; */
 }
