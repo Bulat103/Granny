@@ -1,5 +1,8 @@
-
+<link rel="stylesheet" href="/stylesheets/image.css">
 hello {{me.name}}!
 your mail is: {{me.email}}
 your password is:{{me.password}}
+{{#each photo}}
+<img class="photo" src="{{this.url}}">
+{{/each}}
 Good luck!
