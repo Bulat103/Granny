@@ -70,10 +70,17 @@ router.get('/profile', async (req, res) => {
 router.get('/signin', (req, res) => {
   res.render('signin');
 });
-router.post('/signin',async (req, res) => {
-  const{ email } = req.body;
-  const user = await User.findOne
 
+//---------------------------------------------------
+// http://localhost:3000/user/signup
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('authorization');
+  res.redirect('/');
+});
 
-})
+router.post('/signin', async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne;
+});
 module.exports = router;

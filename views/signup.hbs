@@ -1,38 +1,46 @@
 <link rel="stylesheet" href="/stylesheets/sign.css">
 <link rel="stylesheet" href="/stylesheets/lay.css">
 
-        
-             
+
+
 <script defer src="/js/application.js"></script>
 
 <div class="container rounded-pill text-center">
-<div class="signContainer col-md-6 offset-md-3 ">
+  <div class="signContainer col-md-6 offset-md-3 ">
 
-  <form method="POST" action="/user/signup" class="signUpForm">
-    <h1>Registration for Babusa <3 </h1>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Yor name</label>
-      <input type="text" class="form-control" name="name" placeholder="Babushka>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"  placeholder="babushka@rambler.ru">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password qwerty">
-    </div>
-    <div class="mb-3 form-check">
-      <p><input type="radio" class="form-check-input" id="grandSonCheck" name="checkRole" value="grandson">Я внук</p>
-      <p><input type="radio" class="form-check-input" id="grandMaCheck" name="checkRole" value="grandma">Я бабушка</p>
-    </div>
-    <div class="mb-3" id="grandSonOfMa">
-      <label for="exampleInputPassword1" class="form-label">Введите имя внука</label>
-      <input type="text" class="form-control" name="grandSon">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
+    <form method="POST" action="/user/signup" class="signUpForm">
+
+      <h1>Registration for Babusa <3 </h1>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Yor name</label>
+            <input type="text" class="form-control" name="name" placeholder="Babushka">
+          </div>
+          <div class=" mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
+              placeholder="babushka@rambler.ru">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+              placeholder="Password qwerty">
+          </div>
+          <div class="mb-3 form-check">
+            <p><input type="radio" class="form-check-input" id="grandSonCheck" name="checkRole" value="grandson"
+                checked>Я внук
+            </p>
+            <p><input type="radio" class="form-check-input" id="grandMaCheck" name="checkRole" value="grandma">Я бабушка
+            </p>
+          </div>
+          <div class="mb-3" id="grandSonOfMa">
+            <label for="exampleInputPassword1" class="form-label">Введите имя внука</label>
+            <input type="text" class="form-control" name="grandSon">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
 </div>
