@@ -1,4 +1,5 @@
 const express = require('express');
+const sha256 = require('sha256');
 
 const router = express.Router();
 // eslint-disable-next-line import/no-useless-path-segments
@@ -24,5 +25,10 @@ router.post('/signup', async (req, res) => {
 router.get('/signin', (req, res) => {
   res.render('signin');
 });
+router.post('/signin',async (req, res) => {
+  const{ email } = req.body;
+  const user = await User.findOne
 
+
+})
 module.exports = router;
