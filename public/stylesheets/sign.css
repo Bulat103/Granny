@@ -11,3 +11,6 @@ body {
    background-color: salmon;
    /* border-radius: 10%; */
 }
+#grandSonOfMa{
+display: none;
+}

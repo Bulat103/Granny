@@ -75,6 +75,18 @@ router.get('/profile', async (req, res) => {
 router.get('/signin', (req, res) => {
   res.render('signin');
 });
+
+
+//---------------------------------------------------
+// http://localhost:3000/user/signup
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.clearCookie('authorization');
+  res.redirect('/');
+});
+
+  //---------------------------------------------------
+// http://localhost:3000/user/signin
 router.post('/signin', async (req, res) => {
   const { email } = req.body;
   const user = await Admin.findOne({ where: { email } });
@@ -92,5 +104,6 @@ router.post('/signin', async (req, res) => {
     res.send('Granny, go to sleep');
   }
 });
+
 
 module.exports = router;
