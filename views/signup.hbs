@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/sign.css">
+<script defer src="/js/application.js"></script>
 <div class="signContainer">
-  <form method="POST" action="/user/signup">
+  <form method="POST" action="/user/signup" class="signUpForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Yor name</label>
       <input type="text" class="form-control" name="name">
@@ -15,8 +16,12 @@
       <input type="password" class="form-control" id="exampleInputPassword1" name="password">
     </div>
     <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="ifGrandson">
-      <label class="form-check-label" for="exampleCheck1">я внук</label>
+      <p><input type="radio" class="form-check-input" id="grandSonCheck" name="checkRole" value="grandson">Я внук</p>
+      <p><input type="radio" class="form-check-input" id="grandMaCheck" name="checkRole" value="grandma">Я бабушка</p>
+    </div>
+    <div class="mb-3" id="grandSonOfMa">
+      <label for="exampleInputPassword1" class="form-label">Введите имя внука</label>
+      <input type="text" class="form-control" name="grandSon">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
