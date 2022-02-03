@@ -1,7 +1,14 @@
 <link rel="stylesheet" href="/stylesheets/image.css">
-hello {{me.name}}!
-your mail is: {{me.email}}
-your password is:{{me.password}}
+<img width="300px" height="300px" src={{url}} alt="Картинку надо загрузить">
+<p>On the picture {{description}}</p>
+<form action="/image/reader" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Введите {{user}}URL-адрес картинки</label>
+    <input type="text" class="form-control" id="exampleUrl" name="url">
+  </div>
+  <button type="submit" class="btn btn-primary">Распознать</button>
+</form>
+
 {{#each photo}}
 <img class="photo" src="{{this.url}}">
 {{/each}}

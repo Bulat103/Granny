@@ -58,11 +58,11 @@ router.get('/profile', async (req, res) => {
   const photo = await Image.findAll();
   if (req.session.userRole === 'grandma') {
     me = await User.findByPk(req.session.userid);
-   
+
     // console.log(me);
   } else {
     me = await Admin.findByPk(req.session.userid);
-    
+
     // console.log(me);
   }
 
@@ -76,7 +76,6 @@ router.get('/signin', (req, res) => {
   res.render('signin');
 });
 
-
 //---------------------------------------------------
 // http://localhost:3000/user/signup
 router.get('/logout', (req, res) => {
@@ -85,7 +84,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-  //---------------------------------------------------
+//---------------------------------------------------
 // http://localhost:3000/user/signin
 router.post('/signin', async (req, res) => {
   const { email } = req.body;
@@ -104,6 +103,5 @@ router.post('/signin', async (req, res) => {
     res.send('Granny, go to sleep');
   }
 });
-
 
 module.exports = router;

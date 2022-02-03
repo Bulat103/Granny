@@ -28,10 +28,13 @@ app.use(session({
 
 app.use((req, res, next) => {
   res.locals.username = req.session?.user; // optional chaining operator
+  res.locals.url = req.session?.url;
+  res.locals.description = req.session.description;
   next();
 });
 
 app.use('/user', userRouter);
+app.use('/image', imageRouter);
 app.use('/', mainRouter);
 
 app.listen(PORT, () => {
