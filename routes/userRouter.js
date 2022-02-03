@@ -3,7 +3,7 @@ const sha256 = require('sha256');
 
 const router = express.Router();
 // eslint-disable-next-line import/no-useless-path-segments
-const { Admin, User } = require('../db/models');
+const { Admin, User, Image } = require('../db/models');
 
 //---------------------------------------------------
 // http://localhost:3000/user/signup
@@ -55,14 +55,19 @@ router.post('/signup', async (req, res) => {
 // http://localhost:3000/user/profile
 router.get('/profile', async (req, res) => {
   let me;
+  const photo = await Image.findAll();
   if (req.session.userRole === 'grandma') {
     me = await User.findByPk(req.session.userid);
-    console.log(me);
+   
+    // console.log(me);
   } else {
     me = await Admin.findByPk(req.session.userid);
-    console.log(me);
+    
+    // console.log(me);
   }
-  res.render('profile', { me });
+
+  // const newPhoto = photo.url;
+  res.render('profile', { me, photo });
 });
 
 //---------------------------------------------------
@@ -70,10 +75,22 @@ router.get('/profile', async (req, res) => {
 router.get('/signin', (req, res) => {
   res.render('signin');
 });
-router.post('/signin',async (req, res) => {
-  const{ email } = req.body;
-  const user = await User.findOne
+router.post('/signin', async (req, res) => {
+  const { email } = req.body;
+  const user = await Admin.findOne({ where: { email } });
+  if (user) {
+    const secretPassword = sha256(user.password);
+    if (secretPassword === sha256(req.body.password)) {
+      console.log('111111');
+      req.session.user = user.name;
+      req.session.userid = user.id;
+      res.redirect('/user/profile');
+    } else {
+      res.send(`invalid pass, valid is ${sha256(user.password)}`);
+    }
+  } else {
+    res.send('Granny, go to sleep');
+  }
+});
 
-
-})
 module.exports = router;
