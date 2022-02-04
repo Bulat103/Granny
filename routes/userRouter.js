@@ -14,7 +14,9 @@ router.get('/signup', (req, res) => {
 //---------------------------------------------------
 // http://localhost:3000/user/signup
 router.post('/signup', async (req, res) => {
-  console.log(req.body);
+  if (!req.body.email || !req.body.password) {
+    return res.render('signup', { message: 'Поле не должно быть пустым, введите свои данные' });
+  }
   // Если пользователь бабушка:
   if (req.body.checkRole === 'grandma') {
     const { checkRole, ...newGrandma } = req.body;
@@ -89,6 +91,9 @@ router.get('/logout', (req, res) => {
 router.post('/signin', async (req, res) => {
   const { email } = req.body;
   const user = await Admin.findOne({ where: { email } });
+  if (!req.body.email || !req.body.password) {
+    return res.render('signin', { text: 'Поле не должно быть пустым, введите свои данные' });
+  }
   if (user) {
     const secretPassword = sha256(user.password);
     if (secretPassword === sha256(req.body.password)) {
