@@ -7,7 +7,7 @@ const router = express.Router();
 function imageParser(arr) {
   let text = '';
   for (let i = 0; i < 6; i += 1) {
-    text += `${arr[i].tag.en} `;
+    text += `${arr[i].tag.en}, `;
   }
   return text;
 }

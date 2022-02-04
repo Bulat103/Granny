@@ -1,16 +1,17 @@
-* {
-   box-sizing: border-box;
-}
-
 body {
    margin: 0;
 }
 
-
 .container{
-   background-color: salmon;
-   /* border-radius: 10%; */
+   background-color: rgba(250, 128, 114, 0.541);
+   padding: 10px;
 }
+
 #grandSonOfMa{
 display: none;
+}
+.enterApp{
+  font-size: 30px;
+  color: rgb(245, 223, 189);
+  text-shadow: rgb(13, 14, 12) 4px 0 10px;
 }
