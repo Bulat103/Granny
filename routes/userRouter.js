@@ -57,18 +57,12 @@ router.post('/signup', async (req, res) => {
 // http://localhost:3000/user/profile
 router.get('/profile', async (req, res) => {
   let me;
-  const photo = await Image.findAll();
+  const photo = await Image.findAll({ where: { user_id: req.session.userid } });
   if (req.session.userRole === 'grandma') {
     me = await User.findByPk(req.session.userid);
-
-    // console.log(me);
   } else {
     me = await Admin.findByPk(req.session.userid);
-
-    // console.log(me);
   }
-
-  // const newPhoto = photo.url;
   res.render('profile', { me, photo });
 });
 
@@ -109,8 +103,8 @@ router.post('/signin', async (req, res) => {
     if (newUser) {
       const grannyPassword = sha256(newUser.password);
       if (grannyPassword === sha256(req.body.password)) {
-        req.session.newUser = newUser.name;
-        req.session.userId = newUser.id;
+        req.session.user = newUser.name;
+        req.session.userid = newUser.id;
         res.redirect('/user/profile');
       } else {
         res.send(`invalid pass, valid is ${sha256(user.password)}`);

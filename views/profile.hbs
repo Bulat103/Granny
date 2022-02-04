@@ -1,15 +1,29 @@
 <link rel="stylesheet" href="/stylesheets/image.css">
-<img width="300px" height="300px" src={{url}} alt="Картинку надо загрузить">
-<p>On the picture {{description}}</p>
-<form action="/image/reader" method="POST">
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Введите {{user}}URL-адрес картинки</label>
-    <input type="text" class="form-control" id="exampleUrl" name="url">
-  </div>
-  <button type="submit" class="btn btn-primary">Распознать</button>
-</form>
+<script defer type="text/javascript" src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script defer src="/js/speech.js"></script>
 
-{{#each photo}}
-<img class="photo" src="{{this.url}}">
-{{/each}}
-Good luck!
+<div class="grandmaPicture">
+  <div class="profileContainer">
+    <img width="300px" height="300px" src={{url}} class="mainImage">
+    <div id="photoDescription">
+      <p id="description">The photo shows: {{description}}</p>
+    </div>
+    <form action="/image/reader" method="POST">
+      <div class="mb-3">
+
+        <input type="text" class="form-control" id="exampleUrl" name="url" placeholder="ВВедите URL-адресс картинки">
+      </div>
+      <button type="submit" class="btn btn-primary">Распознать</button>
+    </form>
+    <button class="btn btn-primary" id="audio">Прослушать</button>
+  </div>
+
+  <div class="contGra">
+    <h2>Твои картинки бабушка.</h2>
+    <div class="imageContainer">
+      {{#each photo}}
+      <img class="photo" src="{{this.url}}">
+      {{/each}}
+    </div>
+  </div>
+</div>
