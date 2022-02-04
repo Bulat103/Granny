@@ -58,11 +58,11 @@ router.get('/profile', async (req, res) => {
   const photo = await Image.findAll();
   if (req.session.userRole === 'grandma') {
     me = await User.findByPk(req.session.userid);
-   
+
     // console.log(me);
   } else {
     me = await Admin.findByPk(req.session.userid);
-    
+
     // console.log(me);
   }
 
@@ -76,7 +76,6 @@ router.get('/signin', (req, res) => {
   res.render('signin');
 });
 
-
 //---------------------------------------------------
 // http://localhost:3000/user/signup
 router.get('/logout', (req, res) => {
@@ -85,7 +84,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-  //---------------------------------------------------
+//---------------------------------------------------
 // http://localhost:3000/user/signin
 router.post('/signin', async (req, res) => {
   const { email } = req.body;
@@ -101,9 +100,18 @@ router.post('/signin', async (req, res) => {
       res.send(`invalid pass, valid is ${sha256(user.password)}`);
     }
   } else {
-    res.send('Granny, go to sleep');
+    const newUser = await User.findOne({ where: { email } });
+    if (newUser) {
+      const grannyPassword = sha256(newUser.password);
+      if (grannyPassword === sha256(req.body.password)) {
+        req.session.newUser = newUser.name;
+        req.session.userId = newUser.id;
+        res.redirect('/user/profile');
+      } else {
+        res.send(`invalid pass, valid is ${sha256(user.password)}`);
+      }
+    }
   }
 });
-
 
 module.exports = router;
