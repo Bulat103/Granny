@@ -20,10 +20,11 @@ router.post('/reader', async (req, res) => {
   const imageUrl = `https://api.imagga.com/v2/tags?image_url=${encodeURIComponent(url)}`;
   (async () => {
     try {
+      const id = req.session.userid;
       const response = await got(imageUrl, { username: apiKey, password: apiSecret });
       const body = JSON.parse(response.body);
       const description = imageParser(body.result.tags);
-      await Image.create({ url, body: description });
+      await Image.create({ url, body: description, user_id: id });
       req.session.url = url;
       req.session.description = description;
       res.redirect('/user/profile');
